@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RIBBIT ($RIBT) | Solana frog coin</title>
+<meta name="description" content="RIBBIT ($RIBT) is a Solana meme coin for frogs who never left the group chat. Tokenomics, how to buy, community links.">
+<meta name="theme-color" content="#06100a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #06100a;
+    --panel: #0c1f14;
+    --line: #1f4d2e;
+    --neon: #7CFF3B;
+    --neon-dim: #3fbf1c;
+    --ink: #d8f5d0;
+    --muted: #7aa187;
+    --warn: #ffd23f;
+    --display: "Bungee", "Impact", "Arial Black", sans-serif;
+    --mono: "Space Mono", "Courier New", monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: radial-gradient(ellipse at top, #0f2a19 0%, var(--bg) 60%) fixed;
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 16px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background: repeating-linear-gradient(0deg, rgba(124,255,59,.035) 0 1px, transparent 1px 3px);
+  }
+  main, header, footer { position: relative; z-index: 1; }
+  a { color: var(--neon); }
+  :focus-visible { outline: 3px solid var(--warn); outline-offset: 3px; border-radius: 4px; }
+  .wrap { width: min(1080px, 100% - 40px); margin: 0 auto; }
+
+  /* header */
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 12px; }
+  .brand { font-family: var(--display); color: var(--neon); font-size: 20px; text-decoration: none; letter-spacing: 1px; }
+  .nav ul { display: flex; gap: 14px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; justify-content: flex-end; }
+  .nav a { color: var(--muted); text-decoration: none; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+  .nav a:hover { color: var(--neon); }
+
+  /* hero */
+  .hero { display: grid; gap: 28px; padding: 24px 0 56px; align-items: center; }
+  .hero h1 {
+    font-family: var(--display);
+    font-size: clamp(54px, 13vw, 128px);
+    line-height: .9;
+    margin: 0;
+    color: var(--neon);
+    text-shadow: 4px 4px 0 #0b4d12, 0 0 28px rgba(124,255,59,.35);
+    letter-spacing: 2px;
+  }
+  .ticker { font-family: var(--display); font-size: 22px; color: var(--warn); margin: 12px 0 6px; }
+  .tagline { font-size: 18px; margin: 0 0 22px; max-width: 34ch; }
+  .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
+  .pill { border: 1px solid var(--line); padding: 6px 12px; border-radius: 999px; font-size: 13px; background: var(--panel); }
+  .btn {
+    display: inline-block; font-family: var(--display); font-size: 16px; text-decoration: none;
+    background: var(--neon); color: #03150a; padding: 14px 22px; border-radius: 10px;
+    box-shadow: 4px 4px 0 #0b4d12; border: 0; cursor: pointer; min-height: 44px;
+  }
+  .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #0b4d12; }
+  .btn.ghost { background: transparent; color: var(--neon); border: 2px solid var(--neon); box-shadow: none; }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .frog-stage { position: relative; display: grid; place-items: center; }
+  .frog-stage svg { width: min(320px, 80vw); height: auto; filter: drop-shadow(0 0 24px rgba(124,255,59,.35)); }
+  .bob { animation: bob 3.2s ease-in-out infinite; transform-origin: center; }
+  @keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+  .blink { animation: blink 5s infinite; transform-origin: center; }
+  @keyframes blink { 0%,94%,100% { transform: scaleY(1) } 96% { transform: scaleY(.1) } }
+  .ca-box {
+    margin-top: 26px; border: 1px dashed var(--warn); border-radius: 10px; padding: 12px 14px;
+    background: rgba(255,210,63,.06); font-size: 13px; word-break: break-all;
+  }
+  .ca-box strong { color: var(--warn); }
+
+  /* sections */
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  h2 { font-family: var(--display); font-size: clamp(30px, 6vw, 46px); color: var(--neon); margin: 0 0 8px; letter-spacing: 1px; }
+  .lede { color: var(--muted); margin: 0 0 28px; max-width: 60ch; }
+
+  /* tokenomics */
+  .stats { display: grid; gap: 14px; grid-template-columns: 1fr; margin-bottom: 26px; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+  .stat small { color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-size: 12px; }
+  .stat b { display: block; font-family: var(--display); font-size: 24px; color: var(--warn); font-weight: 400; margin-top: 6px; word-break: break-word; }
+  .split { display: flex; height: 26px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); margin-bottom: 18px; }
+  .split span { display: block; height: 100%; }
+  .legend { display: grid; gap: 10px; grid-template-columns: 1fr; list-style: none; padding: 0; margin: 0; }
+  .legend li { display: flex; justify-content: space-between; gap: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+  .legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 8px; vertical-align: -1px; }
+  .note { font-size: 12px; color: var(--muted); margin-top: 14px; }
+
+  /* how to buy */
+  .steps { display: grid; gap: 16px; grid-template-columns: 1fr; counter-reset: step; list-style: none; padding: 0; margin: 0; }
+  .steps li {
+    counter-increment: step; position: relative; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 14px; padding: 18px 18px 18px 70px;
+  }
+  .steps li::before {
+    content: counter(step); position: absolute; left: 18px; top: 16px; font-family: var(--display);
+    font-size: 30px; color: var(--neon); line-height: 1;
+  }
+  .steps h3 { margin: 0 0 4px; font-family: var(--display); font-weight: 400; font-size: 18px; color: var(--ink); }
+  .steps p { margin: 0; color: var(--muted); font-size: 14px; }
+
+  /* community */
+  .links { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  .link-card {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px;
+    text-decoration: none; color: var(--ink);
+  }
+  .link-card:hover { border-color: var(--neon); }
+  .link-card b { font-family: var(--display); font-weight: 400; color: var(--neon); }
+  .link-card span { color: var(--muted); font-size: 13px; word-break: break-all; text-align: right; }
+  .copy { cursor: pointer; font-family: var(--mono); font-size: 13px; background: var(--neon); color: #03150a; border: 0; border-radius: 8px; padding: 8px 12px; min-height: 36px; }
+  .copy:hover { background: var(--warn); }
+
+  .disclaimer {
+    margin-top: 40px; padding: 16px; border: 1px solid #5a3b00; background: rgba(255,210,63,.05);
+    border-radius: 12px; font-size: 13px; color: #e8d59b;
+  }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 13px; }
+  footer .wrap { display: grid; gap: 10px; }
+
+  /* wider screens */
+  @media (min-width: 720px) {
+    .hero { grid-template-columns: 1.1fr .9fr; padding: 40px 0 72px; }
+    .stats { grid-template-columns: repeat(3, 1fr); }
+    .legend { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+    .links { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+<header class="wrap nav">
+  <a class="brand" href="#top" aria-label="RIBBIT home">RIBBIT</a>
+  <nav aria-label="Main">
+    <ul>
+      <li><a href="#tokenomics">Tokenomics</a></li>
+      <li><a href="#buy">How to buy</a></li>
+      <li><a href="#community">Community</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <h1>RIBBIT</h1>
+      <p class="ticker">$RIBT on Solana</p>
+      <p class="tagline">[TAGLINE TBD] Sample: Sit still. Stay green. Hop when the chart says hop.</p>
+      <div class="pill-row" aria-label="Key facts">
+        <span class="pill">Chain: Solana</span>
+        <span class="pill">Ticker: RIBT</span>
+        <span class="pill">Supply: [TBD]</span>
+      </div>
+      <div class="btn-row">
+        <a class="btn" href="#buy">Buy $RIBT</a>
+        <a class="btn ghost" href="#community">Join the swamp</a>
+      </div>
+      <div class="ca-box">
+        <strong>Contract address:</strong> [CONTRACT ADDRESS TBD]
+        <br>Only trust the address published here and in the official socials. Ignore DMs with other addresses.
+      </div>
+    </div>
+
+    <div class="frog-stage" aria-label="RIBBIT frog mascot illustration">
+      <svg viewBox="0 0 300 300" role="img" aria-labelledby="frogTitle frogDesc">
+        <title id="frogTitle">RIBBIT frog mascot</title>
+        <desc id="frogDesc">A round green frog with big glossy eyes, a wide grin and a tiny crown.</desc>
+        <defs>
+          <radialGradient id="skin" cx="45%" cy="35%" r="70%">
+            <stop offset="0" stop-color="#b8ff7a"/>
+            <stop offset=".55" stop-color="#4fd11f"/>
+            <stop offset="1" stop-color="#14661a"/>
+          </radialGradient>
+          <radialGradient id="belly" cx="50%" cy="40%" r="60%">
+            <stop offset="0" stop-color="#e9ffc9"/>
+            <stop offset="1" stop-color="#7fe04a"/>
+          </radialGradient>
+        </defs>
+        <g class="bob">
+          <!-- crown -->
+          <path d="M96 62 L110 26 L130 52 L150 18 L170 52 L190 26 L204 62 Z" fill="#ffd23f" stroke="#7a5a00" stroke-width="4" stroke-linejoin="round"/>
+          <circle cx="150" cy="40" r="5" fill="#ff3b6b"/>
+          <!-- legs -->
+          <ellipse cx="78" cy="262" rx="34" ry="18" fill="url(#skin)" stroke="#0b3d10" stroke-width="4"/>
+          <ellipse cx="222" cy="262" rx="34" ry="18" fill="url(#skin)" stroke="#0b3d10" stroke-width="4"/>
+          <!-- body/head -->
+          <ellipse cx="150" cy="190" rx="112" ry="92" fill="url(#skin)" stroke="#0b3d10" stroke-width="5"/>
+          <ellipse cx="150" cy="222" rx="70" ry="44" fill="url(#belly)" opacity=".85"/>
+          <!-- eyes -->
+          <g class="blink">
+            <circle cx="95" cy="118" r="38" fill="#f4fff0" stroke="#0b3d10" stroke-width="5"/>
+            <circle cx="205" cy="118" r="38" fill="#f4fff0" stroke="#0b3d10" stroke-width="5"/>
+            <circle cx="105" cy="122" r="17" fill="#06100a"/>
+            <circle cx="215" cy="122" r="17" fill="#06100a"/>
+            <circle cx="111" cy="116" r="5" fill="#fff"/>
+            <circle cx="221" cy="116" r="5" fill="#fff"/>
+          </g>
+          <!-- nostrils and grin -->
+          <circle cx="132" cy="170" r="3.5" fill="#0b3d10"/>
+          <circle cx="168" cy="170" r="3.5" fill="#0b3d10"/>
+          <path d="M92 186 Q150 240 208 186" fill="#06100a" stroke="#0b3d10" stroke-width="4" stroke-linecap="round"/>
+          <path d="M104 196 Q150 222 196 196 Q150 206 104 196 Z" fill="#ff5c8a"/>
+          <!-- cheeks -->
+          <circle cx="60" cy="172" r="12" fill="#ff8fb0" opacity=".45"/>
+          <circle cx="240" cy="172" r="12" fill="#ff8fb0" opacity=".45"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <section id="tokenomics" class="wrap" aria-labelledby="tokHead">
+    <h2 id="tokHead">Tokenomics</h2>
+    <p class="lede">Placeholder numbers until the team confirms the real split. Nothing here is a promise.</p>
+    <div class="stats">
+      <div class="stat"><small>Total supply</small><b>[TOTAL SUPPLY TBD]</b></div>
+      <div class="stat"><small>Network</small><b>Solana SPL</b></div>
+      <div class="stat"><small>Tax</small><b>[TAX TBD]</b></div>
+    </div>
+    <div class="split" role="img" aria-label="Sample split bar, placeholder percentages">
+      <span style="width:40%;background:#7CFF3B"></span>
+      <span style="width:25%;background:#3fbf1c"></span>
+      <span style="width:20%;background:#ffd23f"></span>
+      <span style="width:15%;background:#ff5c8a"></span>
+    </div>
+    <ul class="legend">
+      <li><span><i style="background:#7CFF3B"></i>Liquidity pool</span><b>[X]%</b></li>
+      <li><span><i style="background:#3fbf1c"></i>Community and airdrops</span><b>[X]%</b></li>
+      <li><span><i style="background:#ffd23f"></i>Team (vesting [TBD])</span><b>[X]%</b></li>
+      <li><span><i style="background:#ff5c8a"></i>Marketing and CEX fund</span><b>[X]%</b></li>
+    </ul>
+    <p class="note">Bar widths are sample visuals only. Replace the four percentages and the bar with the client's real split. Liquidity lock or burn status: [TBD, add proof link before publishing].</p>
+  </section>
+
+  <section id="buy" class="wrap" aria-labelledby="buyHead">
+    <h2 id="buyHead">How to buy $RIBT</h2>
+    <p class="lede">Four steps. Takes about two minutes once you have a Solana wallet.</p>
+    <ol class="steps">
+      <li><h3>Get a Solana wallet</h3><p>Use a wallet app you already trust (Phantom, Solflare or similar). Write down your seed phrase offline. Nobody on the team will ever ask for it.</p></li>
+      <li><h3>Fund it with SOL</h3><p>Buy SOL on an exchange and send it to your wallet address. Keep a little extra for network fees.</p></li>
+      <li><h3>Swap SOL for RIBT</h3><p>Paste the contract address [CONTRACT ADDRESS TBD] into a Solana DEX such as Jupiter or Raydium, then confirm the swap.</p></li>
+      <li><h3>Verify and hold</h3><p>Check the token on an explorer like Solscan or DexScreener before you trust it. Meme coins can go to zero. Size your bet accordingly.</p></li>
+    </ol>
+    <p class="note">Buy link: <span>[BUY LINK TBD]</span></p>
+  </section>
+
+  <section id="community" class="wrap" aria-labelledby="comHead">
+    <h2 id="comHead">Community</h2>
+    <p class="lede">Official links only. Anyone DMing you a different link is not us.</p>
+    <div class="links">
+      <div class="link-card">
+        <div><b>X (Twitter)</b><br><span>[X LINK TBD]</span></div>
+        <button class="copy" type="button" data-copy="[X LINK TBD]">Copy</button>
+      </div>
+      <div class="link-card">
+        <div><b>Telegram</b><br><span>[TELEGRAM LINK TBD]</span></div>
+        <button class="copy" type="button" data-copy="[TELEGRAM LINK TBD]">Copy</button>
+      </div>
+      <div class="link-card">
+        <div><b>Discord</b><br><span>[DISCORD LINK TBD]</span></div>
+        <button class="copy" type="button" data-copy="[DISCORD LINK TBD]">Copy</button>
+      </div>
+      <div class="link-card">
+        <div><b>Contract address</b><br><span>[CONTRACT ADDRESS TBD]</span></div>
+        <button class="copy" type="button" data-copy="[CONTRACT ADDRESS TBD]">Copy</button>
+      </div>
+    </div>
+    <div class="disclaimer" role="note">
+      Not financial advice. Memecoins are highly volatile and can go to zero. DYOR.
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>RIBBIT ($RIBT) is a community meme token on Solana. Demo site, placeholders in brackets.</span>
+    <span>Logo and mascot art drawn for this page. No audit, KYC or exchange listing is claimed.</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    document.querySelectorAll('[data-copy]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var text = btn.getAttribute('data-copy');
+        var done = function () {
+          var old = btn.textContent;
+          btn.textContent = 'Copied';
+          setTimeout(function () { btn.textContent = old; }, 1400);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, function () {});
+        } else {
+          done();
+        }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
